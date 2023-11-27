@@ -1,0 +1,4 @@
+File: message 2
+File: Rs. 12000.0/-withdraw from account id 101
+File: Rs. 33000.0/-withdraw from account id 101
+File: message 2
