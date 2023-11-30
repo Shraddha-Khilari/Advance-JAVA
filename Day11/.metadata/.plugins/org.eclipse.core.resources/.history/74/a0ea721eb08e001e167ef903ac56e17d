@@ -1,0 +1,39 @@
+package com.sunbeam.controllers;
+
+import javax.servlet.http.HttpSession;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+
+import com.sunbeam.pojos.Credentials;
+import com.sunbeam.pojos.User;
+import com.sunbeam.services.UserService;
+
+/**
+ * Advanced Java @ DMC Sep 2023
+ * Trainer: Nilesh Ghule
+ * Time: 2023-11-28 15:43 
+ */
+@Controller
+public class LoginController {
+	@Autowired
+	private UserService userService;
+	
+	@RequestMapping("/login")
+	public String autheticateUser(Credentials cr, HttpSession session) {
+		User user = userService.authenticate(cr);
+		if(user != null) {
+			session.setAttribute("curUser", user);
+			return "redirect:/allreviews"; // after successful login go to all reviews page.
+		}
+		return "failed";
+	}
+}
+
+
+
+
+
+
+

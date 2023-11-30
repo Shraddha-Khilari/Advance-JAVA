@@ -1,0 +1,35 @@
+package com.sunbeam.services;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.sunbeam.daos.UserDao;
+import com.sunbeam.pojos.Credentials;
+import com.sunbeam.pojos.User;
+
+/**
+ * Advanced Java @ DMC Sep 2023
+ * Trainer: Nilesh Ghule
+ * Time: 2023-11-28 15:37 
+ */
+@Service
+public class UserService {
+	@Autowired
+	private UserDao userDao;
+	
+	public User authenticate(Credentials cr) {
+		User user = userDao.findByEmail(cr.getEmail());
+		if(user != null && user.getPassword().equals(cr.getPasswd()))
+			return user;
+		return null;
+	}
+
+	
+	
+	public int save(User u) {
+		String sql = "INSERT INTO users(id, first_name, last_name, email, mobile, birth, password) VALUES(default, ?, ?, ?, ?, ?, ?)";
+		int count = jdbcTemplate.update(sql, u.getFirstName(), u.getLastName(), u.getEmail(), u.getMobile(), u.getBirth(), u.getPassword());
+		return count;
+	}
+	}
+

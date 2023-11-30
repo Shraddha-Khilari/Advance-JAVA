@@ -1,0 +1,36 @@
+package com.sunbeam.services;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.sunbeam.daos.MovieDao;
+import com.sunbeam.pojos.Movie;
+
+/**
+ * Advanced Java @ DMC Sep 2023
+ * Trainer: Nilesh Ghule
+ * Time: 2023-11-28 18:24 
+ */
+@Service
+public class MovieService {
+	@Autowired
+	private MovieDao movieDao;
+
+	public List<Movie> findAllMovies() {
+		List<Movie> list = movieDao.findAll();
+		return list;
+	}
+}
+
+
+
+
+
+
+
+
+
+
+
