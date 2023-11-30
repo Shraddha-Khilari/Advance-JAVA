@@ -1,6 +1,8 @@
 package com.sunbeam.controllers;
 
 import javax.servlet.http.HttpSession;
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -40,7 +42,7 @@ public class LoginController {
 	}
 	
 	@RequestMapping("/saveuser")
-	public String saveUser( @ModelAttribute("usr") User user, BindingResult res) {
+	public String saveUser(@Valid @ModelAttribute("usr") User user, BindingResult res) {
 		if(res.hasErrors()) {
 			System.out.println(res);
 			return "newuser";
